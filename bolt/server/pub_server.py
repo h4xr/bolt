@@ -49,3 +49,29 @@ class Server(object):
         if not self.zmq_socket:
             raise Exception("Unable to find an active ZMQ connection")
         self.zmq_socket.close()
+
+    def message(self, topic, body):
+        """Send a ZeroMQ message
+
+        Publishes a message provided the topic and body. The serialization of
+        the message is the responsibility of the calling method.
+
+        Keyword arguments:
+        topic -- The topic to be used for publishing
+        body -- The message body to be transmitted
+        """
+
+        message = self._prep_message(topic, body)
+        self.zmq_socket.send(message)
+
+    def _prep_message(self, topic, body):
+        """Prepares a ZeroMQ message for sending
+
+        Keyword arguments:
+        topic -- The topic on which message should be published
+        body -- The body of the message
+
+        Returns: String
+        """
+
+        return "{}: {}".format(topic, body)
