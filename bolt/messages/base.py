@@ -32,10 +32,10 @@ class MessageBase(object):
 
         self.message_class = message_class
         self.message_body = {
-            command: '',
-            subcommand: [],
-            options: [],
-            extras: []
+            'command': '',
+            'subcommand': [],
+            'options': [],
+            'extras': []
         }
 
     def __str__(self):
