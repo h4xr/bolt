@@ -25,7 +25,7 @@ class SubscriptionRegister(MessageBase):
             activation_key(str): The activation key to be used
         """
 
-        super(SubscriptionRegister, self).__init__(self.__class__.__name__)
+        super(SubscriptionRegister, self).__init__(self.__class__.__name__, self.MESSAGE_TYPE['COMMAND'])
         self.set_command('subscription-manager')
         self.set_subcommand('register')
         self.set_extras('option_renderer:=')

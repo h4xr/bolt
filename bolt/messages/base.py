@@ -13,7 +13,13 @@ class MessageBase(object):
     should be present in all the deriving classes.
     '''
 
-    def __init__(self, message_class):
+    MESSAGE_TYPE = {
+        'COMMAND': 'command',
+        'API_REQ': 'api_request',
+        'HEARTBEAT': 'heartbeat'
+    }
+
+    def __init__(self, message_class, message_type='command'):
         """MessageBase constructor
 
         Initializes the MessageBase with the supported parameters to mark the
@@ -32,6 +38,7 @@ class MessageBase(object):
 
         self.message_class = message_class
         self.message_body = {
+            'type': message_type
             'command': '',
             'subcommand': [],
             'options': [],

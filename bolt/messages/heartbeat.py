@@ -20,7 +20,7 @@ class Heartbeat(MessageBase):
         """Heartbeat constructor
         """
 
-        super(Heartbeat, self).__init__(self.__class__.__name__)
+        super(Heartbeat, self).__init__(self.__class__.__name__, self.MESSAGE_TYPE['HEARTBEAT'])
         self.time = str(datetime.time())
         self.set_command('heartbeat')
         self.set_extras(self.time)
