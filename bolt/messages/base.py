@@ -47,6 +47,14 @@ class MessageBase(object):
         error_message = "{} does not implement string representation"
         raise NotImplemedtedError(error_message.format(self.message_class))
 
+    def clear(self):
+        """Clear the message body"""
+
+        self.message_body['command'] = ''
+        self.message_body['subcommand'] = []
+        self.message_body['options'] = []
+        self.message_body['extras'] = []
+
     def set_command(self, command):
         """Set the command to be executed
 
