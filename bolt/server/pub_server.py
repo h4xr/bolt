@@ -8,12 +8,12 @@ import time
 import zmq
 
 class Server(object):
-    '''Publisher server for Bolt
+    """Publisher server for Bolt
 
     Provides mechanism for setting up a message publishing server for bolt
     through which the system can publish messages provided the topic and message
     format.
-    '''
+    """
 
     def __init__(self, host, port):
         """Server constructor
@@ -21,9 +21,9 @@ class Server(object):
         Sets up the Server to listen on the provided host and port combination.
         Currently, only tcp based connection is allowed.
 
-        Keyword arguments:
-        host -- The host on which to setup the socket
-        port -- The port on which to publish the messages
+        Args:
+            host(str): The host on which to setup the socket
+            port(int): The port on which to publish the messages
         """
 
         self.host = host
@@ -44,7 +44,8 @@ class Server(object):
         self.zmq_socket.bind(connection_string)
 
     def disconnect(self):
-        """Close the ZMQ connection running on the port"""
+        """Close the ZMQ connection running on the port
+        """
 
         if not self.zmq_socket:
             raise Exception("Unable to find an active ZMQ connection")
@@ -56,9 +57,9 @@ class Server(object):
         Publishes a message provided the topic and body. The serialization of
         the message is the responsibility of the calling method.
 
-        Keyword arguments:
-        topic -- The topic to be used for publishing
-        body -- The message body to be transmitted
+        Args:
+            topic(str): The topic to be used for publishing
+            body(str): The message body to be transmitted
         """
 
         message = self._prep_message(topic, body)
@@ -67,11 +68,12 @@ class Server(object):
     def _prep_message(self, topic, body):
         """Prepares a ZeroMQ message for sending
 
-        Keyword arguments:
-        topic -- The topic on which message should be published
-        body -- The body of the message
+        Args:
+            topic(str): The topic on which message should be published
+            body(str): The body of the message
 
-        Returns: String
+        Returns:
+            String
         """
 
         return "{}: {}".format(topic, body)

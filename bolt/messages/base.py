@@ -26,8 +26,8 @@ class MessageBase(object):
         @key subcommand List The list of subcommands that should be passed
         @key options List A list of tuples holding the options and any value passed to them
 
-        Keyword arguments:
-        message_class -- The name of the deriving message class
+        Args:
+            message_class(str): The name of the deriving message class
         """
 
         self.message_class = message_class
@@ -41,14 +41,16 @@ class MessageBase(object):
     def __str__(self):
         """Returns the string type representation of the message class
 
-        @returns String
+        Returns:
+            String
         """
 
         error_message = "{} does not implement string representation"
         raise NotImplemedtedError(error_message.format(self.message_class))
 
     def clear(self):
-        """Clear the message body"""
+        """Clear the message body
+        """
 
         self.message_body['command'] = ''
         self.message_body['subcommand'] = []
@@ -58,8 +60,8 @@ class MessageBase(object):
     def set_command(self, command):
         """Set the command to be executed
 
-        Keyword arguments:
-        command -- The command to be executed
+        Args:
+            command(str): The command to be executed
         """
 
         self.message_body['command'] = command
@@ -67,8 +69,8 @@ class MessageBase(object):
     def set_subcommand(self, sub_command):
         """Set the subcommand to be passed to the main command
 
-        Keyword arguments:
-        sub_command -- The subcommand to be passed to the main command
+        Args:
+            sub_command(str): The subcommand to be passed to the main command
         """
 
         self.message_body['subcommand'].append(sub_command)
@@ -76,9 +78,9 @@ class MessageBase(object):
     def set_options(self, option, value=''):
         """Set the option to be passed to the command and subcommand
 
-        Keyword arguments:
-        option -- The name of the option to be passed
-        value -- The optional value to be passed to the option
+        Args:
+            option(str): The name of the option to be passed
+            value(str): The optional value to be passed to the option
         """
 
         option_pair = (option, value)
@@ -87,8 +89,8 @@ class MessageBase(object):
     def set_extras(self, value):
         """Set the extra options for the message
 
-        Keyword arguments:
-        value -- The value to be stored inside the extra params
+        Args:
+            value(str): The value to be stored inside the extra params
         """
 
         self.message_body['extras'].append(value)
@@ -96,7 +98,8 @@ class MessageBase(object):
     def serialize(self):
         """Serializes the message body for transmission
 
-        @returns JSON
+        Returns:
+            JSON
         """
 
         return json.dumps(self.message_body)

@@ -7,11 +7,11 @@ Date: 28/08/2017
 import datetime
 
 class Watchdog(object):
-    '''Watchdog mechanism for Bolt
+    """Watchdog mechanism for Bolt
 
     Provides logging functionality for the Bolt CI to log the various execution
     steps
-    '''
+    """
 
     #Log level
     LOG_ERROR = 1
@@ -24,9 +24,10 @@ class Watchdog(object):
 
         Initializes the watchdog with the provided parameters
 
-        Keyword arguments:
-        log_file -- The path to the log file
-        logging_level -- The desired level of logging that is required(Default: INFO)
+        Args:
+            log_file(str): The path to the log file
+        Kwargs:
+            logging_level(int): The desired level of logging that is required(Default: INFO)
         """
 
         self.log_file = log_file
@@ -39,8 +40,8 @@ class Watchdog(object):
     def error(self, message):
         """Log error level messages into the file
 
-        Keyword argument:
-        message -- The error message to be logged
+        Args:
+            message(str): The error message to be logged
         """
 
         if self.logging_level < self.LOG_ERROR:
@@ -50,8 +51,8 @@ class Watchdog(object):
     def warn(self, message):
         """Log warning level messages into the file
 
-        Keyword argument:
-        message -- The warning message to be logged
+        Args:
+            message(str): The warning message to be logged
         """
 
         if self.logging_level < self.LOG_WARNING:
@@ -61,8 +62,8 @@ class Watchdog(object):
     def info(self, message):
         """Log info level messages into the file
 
-        Keyword argument:
-        message -- The info message to be logged
+        Args:
+            message(str): The info message to be logged
         """
 
         if self.logging_level < self.LOG_INFO:
@@ -72,8 +73,8 @@ class Watchdog(object):
     def debug(self, message):
         """Log debug level messages into the file
 
-        Keyword argument:
-        message -- The debug message to be logged
+        Args:
+            message(str): The debug message to be logged
         """
 
         if self.logging_level < self.LOG_DEBUG:
@@ -81,16 +82,17 @@ class Watchdog(object):
         self._log('DEBUG', message)
 
     def close(self):
-        """Close the logging mechanism"""
+        """Close the logging mechanism
+        """
 
         self.logger.close()
 
     def _log(self, message_level, message):
         """Write the log message to the file
 
-        Keyword arguments:
-        message_level -- The level of the message to log
-        message -- The content of the message
+        Args:
+            message_level(str): The level of the message to log
+            message(str): The content of the message
         """
 
         log_message = self.log_format.format(str(datetime.datetime.now()), __file__, message_level, message)
@@ -99,10 +101,11 @@ class Watchdog(object):
     def _open_log_file(self, log_file):
         """Open the provided log file for writing
 
-        Keyword arguments:
-        log_file -- The path to the log file to be opened
+        Args:
+            log_file(str): The path to the log file to be opened
 
-        Raises IOError On failure opening the log file
+        Raises:
+            IOError
         """
 
         try:

@@ -9,15 +9,16 @@ import datetime
 import json
 
 class Heartbeat(MessageBase):
-    '''Heartbeat Message
+    """Heartbeat Message
 
     Sends a repeating heartbeat after every 5 seconds to let the clients know
     that the server is alive. This is a special type of message that does not
     contain any type of executable command and just provides time of heartbeat.
-    '''
+    """
 
     def __init__(self):
-        """Heartbeat constructor"""
+        """Heartbeat constructor
+        """
 
         super(Heartbeat, self).__init__(self.__class__.__name__)
         self.time = str(datetime.time())
@@ -25,6 +26,7 @@ class Heartbeat(MessageBase):
         self.set_extras(self.time)
 
     def __str__(self):
-        """Provide the string representation of the class"""
+        """Provide the string representation of the class
+        """
 
         return "<{} {}>".format(self.__class__.__name__, self.time)

@@ -7,11 +7,11 @@ Date: 29/08/2017
 from base import MessageBase
 
 class SubscriptionRegister(MessageBase):
-    '''Message implementation for calling subscription manager register
+    """Message implementation for calling subscription manager register
 
     Implements the variable type of subscription manager registration messages
     based on the provided arguments.
-    '''
+    """
 
     def __init__(self, **kwargs):
         """SubscriptionRegister constructor
