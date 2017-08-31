@@ -1,1 +1,2 @@
 from heartbeat import Heartbeat
+from subscription_register import SubscriptionRegister

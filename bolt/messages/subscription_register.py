@@ -28,7 +28,16 @@ class SubscriptionRegister(MessageBase):
         super(SubscriptionRegister, self).__init__(self.__class__.__name__, self.MESSAGE_TYPE['COMMAND'])
         self.set_command('subscription-manager')
         self.set_subcommand('register')
-        self.set_extras('option_renderer:=')
+        self.set_extras('opval_sep', ' ')
+
+        if 'username' in kwargs.keys():
+            self.set_username(kwargs.get('username'))
+        if 'password' in kwargs.keys():
+            self.set_password(kwargs.get('password'))
+        if 'environment' in kwargs.keys():
+            self.set_environment(kwargs.get('environment'))
+        if 'activation_key' in kwargs.keys():
+            self.set_actkey(kwargs.get('activation_key'))
 
     def __str__(self):
         """Provide a string based representation of the class"""

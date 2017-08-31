@@ -38,7 +38,7 @@ class MessageBase(object):
 
         self.message_class = message_class
         self.message_body = {
-            'type': message_type
+            'type': message_type,
             'command': '',
             'subcommand': [],
             'options': [],
@@ -93,14 +93,16 @@ class MessageBase(object):
         option_pair = (option, value)
         self.message_body['options'].append(option_pair)
 
-    def set_extras(self, value):
+    def set_extras(self, option, value):
         """Set the extra options for the message
 
         Args:
+            option(str): The option to be set
             value(str): The value to be stored inside the extra params
         """
 
-        self.message_body['extras'].append(value)
+        opval = (option, value)
+        self.message_body['extras'].append(opval)
 
     def serialize(self):
         """Serializes the message body for transmission
